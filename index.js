@@ -28,12 +28,6 @@ app.get('/room/:id', function(req, res) {
     res.render('room', {"room": room});
 });
 
-app.post('/create', function (req, res) {
-    id = req.body.id;
-    var ret = ttt.create(id);
-    res.status(200).send({id: id, success: ret});
-});
-
 const wss = new WebSocket.Server({ port: 8080 });
 
 function handleCommand(client, cmd, args) {
