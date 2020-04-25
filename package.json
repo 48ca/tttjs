@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/jamesthoughton/tttjs#readme",
   "dependencies": {
+    "ejs": "^3.1.2",
     "express": "^4.17.1",
     "ws": "^7.2.3"
   }
