@@ -66,6 +66,10 @@
 
     var roomInfo = function(client, args) {
         var room = rooms[args.room];
+        if (room === undefined) {
+            create(args.name);
+            room = rooms[args.room];
+        }
         return sendableInfo(room);
     }
 

@@ -16,6 +16,11 @@
     <h1>Room <%= room.id %></h1>
     <p>Welcome to templating using EJS</p>
 
+    <form id="nameform" onsubmit="return getPlayerName(event)">
+        <input name="playername" id="playername" type="text">
+        <input type="submit" value="Join"></input>
+    </form>
+
     <p id="phase"></p>
     <p id="players"></p>
 
