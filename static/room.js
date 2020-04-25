@@ -1,4 +1,5 @@
 var game = {};
+var NAME = undefined;
 
 window.onload = function() {
     connect();
@@ -17,6 +18,7 @@ var getPlayerName = function(e) {
     if (name != "") {
         join(name);
     }
+    window.NAME = name;
     return false;
 };
 
