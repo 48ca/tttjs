@@ -42,13 +42,21 @@ window.onload = function() {
 
     // Listen for messages
     socket.addEventListener('message', function (event) {
-        console.log('Message from server ', event.data);
         var data = JSON.parse(event.data);
         if (data.status == "disconnected") {
             console.warn("disconnected: replaced");
             socket.close();
             return;
         }
+        if (data.status != "ok") {
+            console.warn("received non-ok response: " + event.data);
+            return;
+        }
         handleResponse(data.cmd, data.body);
     });
+
+    document.body.querySelector("#startgame").onclick = function() {
+        console.log("starting");
+        send({cmd: "start", "args": {"room": ROOM}});
+    }
 };

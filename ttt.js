@@ -40,11 +40,12 @@
     }
 
     var updateAllPlayers = function(room) {
+        console.log("Updating all players in room " + room.id);
         var info = sendableInfo(room);
         Object.keys(room.players).forEach(function(player) {
             var sock = room.clients[player];
             sock.send(JSON.stringify({
-                status: "update",
+                status: "ok",
                 cmd: "info",
                 body: info,
             }));
@@ -68,11 +69,29 @@
         return sendableInfo(room);
     }
 
+    var assignRoles = function(room) {
+        Object.keys(room.players).forEach(function(player) {
+            room.players[player].role = "DETECTIVE";
+        });
+    }
+
+    var start = function(args) {
+        var room = rooms[args.room];
+        if (room.phase != "PREGAME") {
+            return false;
+        }
+        room.phase = "PLAYING";
+        assignRoles(room);
+        updateAllPlayers(room);
+        return true;
+    }
+
     module.exports = {
         create: create,
         join: join,
         room: function(id) { return rooms[id]; },
         info: roomInfo,
+        start: start,
         templateInfo: templateInfo,
     };
 }());
