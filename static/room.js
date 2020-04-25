@@ -46,7 +46,8 @@ var connect = function() {
 
     // Connection opened
     socket.addEventListener('open', function (event) {
-        send({"cmd": "info", "args": {"room": ROOM}});
+        console.log("connected");
+        // send({"cmd": "info", "args": {"room": ROOM}});
     });
 
     function handleResponse(cmd, body) {

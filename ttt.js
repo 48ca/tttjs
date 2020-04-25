@@ -1,3 +1,5 @@
+var utils = require('./utils');
+
 (function() {
     var rooms = {};
 
@@ -22,10 +24,10 @@
     }
 
     var makePlayer = function(room, name) {
-        // TODO: Actually assign roles
+        var role = room.phase == "PREGAME" ? "UNDETERMINED" : "SPECTATOR";
         var player = {
             name: name,
-            role: "UNDETERMINED",
+            role: role,
         }
         room.players[name] = player;
         return player;
@@ -74,8 +76,15 @@
     }
 
     var assignRoles = function(room) {
-        Object.keys(room.players).forEach(function(player) {
-            room.players[player].role = "DETECTIVE";
+        var players = utils.shuffle(Object.keys(room.players));
+        players.forEach(function(player, idx) {
+            if (idx == 0) {
+                room.players[player].role = "DETECTIVE";
+            } else if ((idx - 1) % 3 == 0) {
+                room.players[player].role = "TRAITOR";
+            } else {
+                room.players[player].role = "INNOCENT";
+            }
         });
     }
 
