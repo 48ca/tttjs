@@ -17,6 +17,9 @@ app.locals.ws = {
 app.get('/', function (req, res) {
     res.render('index');
 });
+app.get('/roles', function (req, res) {
+    res.render('roles');
+});
 
 app.get('/room/:id', function(req, res) {
     id = req.params.id;

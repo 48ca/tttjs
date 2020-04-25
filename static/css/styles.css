@@ -1,0 +1,40 @@
+/* @font-face kit by Fonts2u (https://fonts2u.com) */ @font-face {font-family:"SF Fedora";src:url("/static/fonts/SF_Fedora/SF_Fedora.eot?") format("eot"),url("/static/fonts/SE_Fedora/SF_Fedora.woff") format("woff"),url("/static/fonts/SF_Fedora/SF_Fedora.ttf") format("truetype"),url("/static/fonts/SF_Fedora/SF_Fedora.svg#SFFedora") format("svg");font-weight:normal;font-style:normal;}
+
+main {
+    font-family: "SF Fedora";
+    font-size: xx-large;
+    font-weight: 100;
+    text-align: center;
+    color: white;
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+    padding-bottom: 20px;
+}
+
+.roles {
+    text-align: center;
+    color: white;
+    background: border-box;
+    width: 180px;
+    margin: auto;
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+}
+.detective {
+    background-color: blue;
+    border-radius: 10px;
+}
+.traitor {
+    background-color: red;
+    border-radius: 10px;
+}
+.innocent {
+    background-color: green;
+    border-radius: 10px;
+}
