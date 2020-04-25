@@ -1,6 +1,6 @@
 /* @font-face kit by Fonts2u (https://fonts2u.com) */ @font-face {font-family:"SF Fedora";src:url("/static/fonts/SF_Fedora/SF_Fedora.eot?") format("eot"),url("/static/fonts/SE_Fedora/SF_Fedora.woff") format("woff"),url("/static/fonts/SF_Fedora/SF_Fedora.ttf") format("truetype"),url("/static/fonts/SF_Fedora/SF_Fedora.svg#SFFedora") format("svg");font-weight:normal;font-style:normal;}
 
-main {
+.header {
     font-family: "SF Fedora";
     font-size: xx-large;
     font-weight: 100;
