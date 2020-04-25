@@ -47,7 +47,7 @@ body {
 .rules {
     text-align: center;
     padding-top: 200px;
-    width: 69%;
+    width: 50%;
     margin: auto;
     font-size: x-large;
     font-family: "SF Fedora";
@@ -64,4 +64,10 @@ li {
     font-family: none;
     color: black;
     text-shadow: none;
+}
+button {
+    font-size: large;
+}
+input {
+    font-size: large;
 }
