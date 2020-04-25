@@ -31,25 +31,48 @@
         return player;
     }
 
+    var sendableInfo = function(room) {
+        return {
+            phase: room.phase,
+            id: room.id,
+            players: room.players,
+        }
+    }
+
+    var updateAllPlayers = function(room) {
+        var info = sendableInfo(room);
+        Object.keys(room.players).forEach(function(player) {
+            var sock = room.clients[player];
+            sock.send(JSON.stringify({
+                status: "update",
+                cmd: "info",
+                body: info,
+            }));
+        });
+    }
+
     var join = function(client, args) {
         var room = rooms[args.room];
         var name = args.name;
         if (name in room.clients) {
-            rooms.clients[name].send({status: "disconnected"});
+            room.clients[name].send(JSON.stringify({status: "disconnected"}));
+        } else {
+            makePlayer(room, name);
         }
         room.clients[name] = client;
-        var p = makePlayer(room, name);
-        return {
-            status: "ok",
-            player: p,
-            players: room.players,
-        }
+        updateAllPlayers(room);
+    }
+
+    var roomInfo = function(client, args) {
+        var room = rooms[args.room];
+        return sendableInfo(room);
     }
 
     module.exports = {
         create: create,
         join: join,
         room: function(id) { return rooms[id]; },
+        info: roomInfo,
         templateInfo: templateInfo,
     };
 }());

@@ -1,4 +1,14 @@
+var game = {};
+
 window.onload = function() {
+
+    var updateGame = function(game) {
+        var phase = game.phase;
+        var players = game.players;
+        document.body.querySelector("#players").innerHTML = JSON.stringify(players);
+        document.body.querySelector("#phase").innerHTML = phase;
+    };
+
     console.log("Joining " + ROOM);
     if (!WSHOST) {
         WSHOST = "localhost:8080";
@@ -20,12 +30,12 @@ window.onload = function() {
 
     function handleResponse(cmd, body) {
         switch(cmd) {
-            case "disconnected":
-                console.warn("disconnected: replaced");
-                socket.close();
-                break;
             case "join":
-                console.log("got players " + body.players);
+                console.log("joined");
+                break;
+            case "info":
+                console.log("got new game status " + JSON.stringify(body));
+                updateGame(body);
                 break;
         }
     }
@@ -34,6 +44,11 @@ window.onload = function() {
     socket.addEventListener('message', function (event) {
         console.log('Message from server ', event.data);
         var data = JSON.parse(event.data);
+        if (data.status == "disconnected") {
+            console.warn("disconnected: replaced");
+            socket.close();
+            return;
+        }
         handleResponse(data.cmd, data.body);
     });
 };

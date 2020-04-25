@@ -39,9 +39,16 @@ const wss = new WebSocket.Server({ port: 8080 });
 function handleCommand(client, cmd, args) {
     switch(cmd) {
         case "join":
-            return ttt.join(client, args);
+            ttt.join(client, args);
+            return {status: "ok", cmd: "join"};
+        case "info":
+            return {
+                status: "ok",
+                cmd: "info",
+                body: ttt.info(client, args)
+            }
     }
-    return {"status": "CMDNOTFOUND"};
+    return {status: "cmdnotfound"};
 }
 
 wss.on('connection', function connection(ws) {
@@ -50,8 +57,10 @@ wss.on('connection', function connection(ws) {
         var data = JSON.parse(message);
         console.log('received: %s', message);
         var res = handleCommand(ws, data.cmd, data.args);
-        console.log('sending: %s', res);
-        ws.send(JSON.stringify(res));
+        if (res !== undefined) {
+            console.log('sending: %s', res);
+            ws.send(JSON.stringify(res));
+        }
     });
 });
 
