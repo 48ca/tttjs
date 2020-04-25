@@ -4,16 +4,17 @@
 <html lang="en">
 <head>
     <%- include('partials/head.ejs') %>
+    <script src="/static/room.js"></script>
+    <script>
+        window.ROOM = "<%= room.id %>";
+        window.WSHOST = "<%= ws.host %>";
+    </script>
 </head>
 <body>
 
 <main>
-    <h1>This is great</h1>
+    <h1>Room <%= room.id %></h1>
     <p>Welcome to templating using EJS</p>
-    <form action="create" method="post">
-        <input type="text" name="id" placeholder="room"></input>
-        <input type="submit" value="Add Room"></input>
-    </form>
 </main>
 
 </body>
