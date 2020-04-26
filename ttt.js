@@ -55,8 +55,17 @@ var utils = require('./utils');
         });
     }
 
+    var getRoom = function(room_name){
+        var room = rooms[room_name];
+        if (room === undefined) {
+            create(room_name);
+            room = rooms[room_name];
+        }
+        return room;
+    }
+
     var join = function(client, args) {
-        var room = rooms[args.room];
+        var room = getRoom(args.room);
         var name = args.name;
         if (name in room.clients) {
             room.clients[name].send(JSON.stringify({status: "disconnected"}));
@@ -68,11 +77,7 @@ var utils = require('./utils');
     }
 
     var roomInfo = function(client, args) {
-        var room = rooms[args.room];
-        if (room === undefined) {
-            create(args.name);
-            room = rooms[args.room];
-        }
+        var room = getRoom(args.room);
         return sendableInfo(room);
     }
 
@@ -97,7 +102,7 @@ var utils = require('./utils');
     }
 
     var stop = function(args) {
-        var room = rooms[args.room];
+        var room = getRoom(args.name);
         if (!room.players[args.name].host) {
             return false;
         }
@@ -108,7 +113,7 @@ var utils = require('./utils');
     }
 
     var start = function(args) {
-        var room = rooms[args.room];
+        var room = getRoom(args.name);
         if (room.phase != "PREGAME") {
             return false;
         }
@@ -124,7 +129,7 @@ var utils = require('./utils');
     module.exports = {
         create: create,
         join: join,
-        room: function(id) { return rooms[id]; },
+        room: function(id) { return getRoom(id); },
         info: roomInfo,
         start: start,
         stop: stop,
