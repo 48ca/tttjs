@@ -5,6 +5,9 @@
     font-weight:normal;
     font-style:normal;
 }
+a {
+    text-color: white;
+}
 
 body {
     text-align: center;
@@ -32,14 +35,15 @@ body {
 }
 
 main > h1 {
-    margin-bottom: 30px;
+    margin-bottom: 50px;
+    font-family: sans-serif;
+    font-weight: 100;
 }
 .roles h1 {
-    margin: 0;
+    margin: 5px;
     padding: 10px;
     display: inline-block;
 }
-
 .roles {
     text-align: center;
     color: white;
@@ -52,6 +56,7 @@ main > h1 {
         1px 1px 0 #000;
     margin-bottom: 10px;
     font-family: sans-serif;
+    height: 150px;
 }
 .detective {
     background-color: blue;
@@ -79,7 +84,7 @@ main > h1 {
 .rules {
     text-align: center;
     padding-top: 200px;
-    width: 50%;
+    width: 650px;
     margin: auto;
     font-size: x-large;
     font-family: "SF Fedora";
@@ -89,6 +94,14 @@ main > h1 {
         1px -1px 0 #000,
         -1px 1px 0 #000,
         1px 1px 0 #000;
+}
+@media (max-width: 700px) {
+    .rules {
+        width: 85%;
+    }
+}
+.rules > ul {
+    width: 85%;
 }
 #players {
     text-align: center;
@@ -112,8 +125,24 @@ li {
 }
 input {
     font-size: large;
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 10px;
+    font-family: sans-serif;
 }
 #startgame {
     font-size: large;
     background-color: lightgreen;
+}
+button {
+    font-size: large;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 20px;
+    width: 60px;
+    font-family: sans-serif;
+}
+a, a:active, a:focus, a:hover, a:visited {
+    color: white;
+    text-decoration: none;
 }

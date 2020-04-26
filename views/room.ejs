@@ -13,10 +13,10 @@
 <body>
 
 <main>
-    <h1>Room <%= room.id %></h1>
+    <h1>Room: <%= room.id %></h1>
 
     <form id="nameform" onsubmit="return getPlayerName(event)">
-        <input name="playername" id="playername" type="text">
+        <input name="playername" id="playername" type="text" placeholder="Name">
         <input type="submit" value="Join"></input>
     </form>
     <div class="roles" id="role">
