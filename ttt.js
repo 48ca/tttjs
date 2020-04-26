@@ -3,6 +3,25 @@ var utils = require('./utils');
 (function() {
     var rooms = {};
 
+    var resetInactiveTimer = function(room) {
+        var room = rooms[id];
+        if (room === undefined)
+            return;
+        if (room.interval != undefined) {
+            clearInterval(room.interval);
+        }
+        room.interval = setInterval(function() {
+            console.log("Cleaning up " + id);
+            if (room != undefined) {
+                Object.keys(room.clients).forEach(function(p) {
+                    room.clients[p].send(JSON.stringify({status: "disconnected"}))
+                });
+                clearInterval(room.interval);
+            }
+            delete rooms[id];
+        }, 30 * 60 * 1000); // 30 minute inactive timer
+    }
+
     var create = function(id) {
         if (id in rooms)
             return false;
@@ -13,6 +32,7 @@ var utils = require('./utils');
             clients: {},
             players: {},
         };
+        resetInactiveTimer(id);
         return true;
     }
 
@@ -139,6 +159,7 @@ var utils = require('./utils');
         info: roomInfo,
         start: start,
         stop: stop,
+        reset: resetInactiveTimer,
         templateInfo: templateInfo,
     };
 }());

@@ -36,6 +36,9 @@ app.get('/room/:id', function(req, res) {
 const wss = new WebSocket.Server({ port: wsport });
 
 function handleCommand(client, cmd, args) {
+    if (args.room != undefined) {
+        ttt.reset(args.room);//reset inactive interval
+    }
     switch(cmd) {
         case "join":
             ttt.join(client, args);
