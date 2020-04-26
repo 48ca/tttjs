@@ -24,7 +24,7 @@ var utils = require('./utils');
     }
 
     var makePlayer = function(room, name) {
-        var role = room.phase == "PREGAME" ? "UNDETERMINED" : "SPECTATOR";
+        var role = room.phase == "PREGAME" ? "Undetermined" : "Spectator";
         var player = {
             name: name,
             role: role,
@@ -87,11 +87,11 @@ var utils = require('./utils');
         var players = utils.shuffle(Object.keys(room.players));
         players.forEach(function(player, idx) {
             if (idx == 0) {
-                room.players[player].role = "DETECTIVE";
+                room.players[player].role = "Detective";
             } else if ((idx - 1) % 3 == 0) {
-                room.players[player].role = "TRAITOR";
+                room.players[player].role = "Traitor";
             } else {
-                room.players[player].role = "INNOCENT";
+                room.players[player].role = "Innocent";
             }
         });
     }

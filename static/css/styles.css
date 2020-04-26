@@ -1,4 +1,10 @@
-/* @font-face kit by Fonts2u (https://fonts2u.com) */ @font-face {font-family:"SF Fedora";src:url("/static/fonts/SF_Fedora/SF_Fedora.eot?") format("eot"),url("/static/fonts/SE_Fedora/SF_Fedora.woff") format("woff"),url("/static/fonts/SF_Fedora/SF_Fedora.ttf") format("truetype"),url("/static/fonts/SF_Fedora/SF_Fedora.svg#SFFedora") format("svg");font-weight:normal;font-style:normal;}
+/* @font-face kit by Fonts2u (https://fonts2u.com) */
+@font-face {
+    font-family:"SF Fedora";
+    src:url("/static/fonts/SF_Fedora/SF_Fedora.eot?") format("eot"),url("/static/fonts/SF_Fedora/SF_Fedora.ttf") format("truetype"),url("/static/fonts/SF_Fedora/SF_Fedora.svg#SFFedora") format("svg");
+    font-weight:normal;
+    font-style:normal;
+}
 
 body {
     text-align: center;
@@ -20,17 +26,28 @@ body {
     padding-bottom: 20px;
 }
 
+.roles > div {
+    display: inline-block;
+    margin: 5px;
+}
+
+.roles h1 {
+    margin: 0;
+    padding: 10px;
+    display: inline-block;
+}
+
 .roles {
     text-align: center;
     color: white;
     background: border-box;
-    width: 180px;
     margin: auto;
     text-shadow:
         -1px -1px 0 #000,
         1px -1px 0 #000,
         -1px 1px 0 #000,
         1px 1px 0 #000;
+    margin-bottom: 10px;
 }
 .detective {
     background-color: blue;
@@ -42,6 +59,14 @@ body {
 }
 .innocent {
     background-color: green;
+    border-radius: 10px;
+}
+.undetermined {
+    background-color: white;
+    border-radius: 10px;
+}
+.spectator {
+    background-color: grey;
     border-radius: 10px;
 }
 .rules {
@@ -58,6 +83,12 @@ body {
         -1px 1px 0 #000,
         1px 1px 0 #000;
 }
+#players {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
 li {
     text-align: left;
     font-weight: 100;
@@ -65,9 +96,10 @@ li {
     color: black;
     text-shadow: none;
 }
-button {
-    font-size: large;
-}
 input {
     font-size: large;
+}
+#startgame {
+    font-size: large;
+    background-color: lightgreen;
 }

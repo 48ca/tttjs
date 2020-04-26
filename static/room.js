@@ -24,13 +24,30 @@ var updateGame = function(game) {
     window.game = game;
     var phase = game.phase;
     var players = game.players;
-    document.body.querySelector("#players").innerHTML = JSON.stringify(players);
+    var next_players="";
+    function appendToPlayers(str) {
+        var players_html = document.body.querySelector("#players").innerHTML;
+        document.body.querySelector("#players").innerHTML = players_html + str;
+    }
+    Object.keys(players).forEach(function(player, index) {
+        next_players += (index%2==0 ? "<tr><td>"+player+"</td>" : "<td>"+player+"</td></tr>")
+        if (index%2 == 1) {
+            appendToPlayers(next_players);
+            next_players="";
+        }
+    });
+    if (players.length%2 == 1) {
+        appendToPlayers("</tr>");
+    }
+    var role = game.players[NAME].role;
+    //document.body.querySelector("#players").innerHTML = JSON.stringify(players);
     document.body.querySelector("#phase").innerHTML = phase;
     if (players[NAME].host) {
         showHostButtons();
     } else {
         hideHostButtons();
     }
+    document.body.querySelector("#role").innerHTML = "<div class=\""+role.toLowerCase()+"\"><h1>"+role+"</h1></div>";
 };
 
 var getPlayerName = function(e) {

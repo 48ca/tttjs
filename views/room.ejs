@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/static/css/styles.css">
     <%- include('partials/head.ejs') %>
     <script src="/static/room.js"></script>
     <script>
@@ -15,7 +14,6 @@
 
 <main>
     <h1>Room <%= room.id %></h1>
-    <p>Welcome to templating using EJS</p>
 
     <form id="nameform" onsubmit="return getPlayerName(event)">
         <input name="playername" id="playername" type="text">
@@ -23,7 +21,8 @@
     </form>
 
     <p id="phase"></p>
-    <p id="players"></p>
+    <table id="players"></table>
+    <div class="roles" id="role"></div>
 
     <button id="startgame" style="display:none">Start</button>
     <button id="stopgame" style="display:none">Stop</button>
