@@ -102,8 +102,11 @@ var utils = require('./utils');
     }
 
     var stop = function(args) {
-        var room = getRoom(args.room);
-        if (!room.players[args.room].host) {
+        var room = rooms[args.room];
+        if (room === undefined) {
+            return false;
+        }
+        if (!room.players[args.name].host) {
             return false;
         }
         room.phase = "PREGAME";
@@ -113,11 +116,15 @@ var utils = require('./utils');
     }
 
     var start = function(args) {
-        var room = getRoom(args.room);
+        var room = rooms[args.room];
+        console.log(room);
+        if (room === undefined) {
+            return false;
+        }
         if (room.phase != "PREGAME") {
             return false;
         }
-        if (!room.players[args.room].host) {
+        if (!room.players[args.name].host) {
             return false;
         }
         room.phase = "PLAYING";
