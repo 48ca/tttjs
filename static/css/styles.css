@@ -9,6 +9,10 @@ a {
     text-color: white;
 }
 
+html, body {
+    background-color: white;
+}
+
 body {
     text-align: center;
     margin: auto;
