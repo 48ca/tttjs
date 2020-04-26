@@ -51,6 +51,7 @@ main > h1 {
         -1px 1px 0 #000,
         1px 1px 0 #000;
     margin-bottom: 10px;
+    font-family: sans-serif;
 }
 .detective {
     background-color: blue;

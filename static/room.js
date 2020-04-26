@@ -25,6 +25,7 @@ var updateGame = function(game) {
     var phase = game.phase;
     var players = game.players;
     var next_players="";
+    document.body.querySelector("#players").innerHTML = "";
     function appendToPlayers(str) {
         var players_html = document.body.querySelector("#players").innerHTML;
         document.body.querySelector("#players").innerHTML = players_html + str;
