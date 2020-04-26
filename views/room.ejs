@@ -18,7 +18,7 @@
     <h1>Room: <%= room.id %></h1>
 
     <form id="nameform" onsubmit="return getPlayerName(event)">
-        <input name="playername" id="playername" type="text" placeholder="Name">
+        <input name="playername" maxlength="30" id="playername" type="text" placeholder="Name">
         <input type="submit" value="Join"></input>
     </form>
     <div class="roles" id="role">
