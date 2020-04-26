@@ -102,8 +102,8 @@ var utils = require('./utils');
     }
 
     var stop = function(args) {
-        var room = getRoom(args.name);
-        if (!room.players[args.name].host) {
+        var room = getRoom(args.room);
+        if (!room.players[args.room].host) {
             return false;
         }
         room.phase = "PREGAME";
@@ -113,11 +113,11 @@ var utils = require('./utils');
     }
 
     var start = function(args) {
-        var room = getRoom(args.name);
+        var room = getRoom(args.room);
         if (room.phase != "PREGAME") {
             return false;
         }
-        if (!room.players[args.name].host) {
+        if (!room.players[args.room].host) {
             return false;
         }
         room.phase = "PLAYING";
