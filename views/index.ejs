@@ -8,6 +8,8 @@
 </head>
 <body>
 
+<%- include('partials/header.ejs') %>
+
 <main>
     <form action="room" method="get" onsubmit="return joinroom(event)">
         <input type="text" required name="id" id="roomname" placeholder="Room"></input>
