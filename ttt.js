@@ -93,7 +93,7 @@ var utils = require('./utils');
         players.forEach(function(player, idx) {
             if (idx == 0) {
                 room.players[player].role = "Detective";
-            } else if ((idx - 1) % 3 == 0) {
+            } else if ((idx - 1) % 4 == 0) {
                 room.players[player].role = "Traitor";
             } else {
                 room.players[player].role = "Innocent";
@@ -117,7 +117,6 @@ var utils = require('./utils');
 
     var start = function(args) {
         var room = rooms[args.room];
-        console.log(room);
         if (room === undefined) {
             return false;
         }
