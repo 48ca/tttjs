@@ -84,7 +84,7 @@ var utils = require('./utils');
     var unassignRoles = function(room) {
         var players = utils.shuffle(Object.keys(room.players));
         players.forEach(function(player, idx) {
-            room.players[player].role = "UNDETERMINED";
+            room.players[player].role = "Undetermined";
         });
     }
 

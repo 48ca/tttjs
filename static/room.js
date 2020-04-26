@@ -36,8 +36,8 @@ var updateGame = function(game) {
             next_players="";
         }
     });
-    if (players.length%2 == 1) {
-        appendToPlayers("</tr>");
+    if (next_players != "") {
+        appendToPlayers(next_players+"</tr>");
     }
     var role = game.players[NAME].role;
     //document.body.querySelector("#players").innerHTML = JSON.stringify(players);
