@@ -10,8 +10,13 @@ var ttt = require('./ttt');
 app.use(body_parser.urlencoded({ extended: true }));
 app.use('/static', express.static('static'))
 app.set('view engine', 'ejs');
+
+var wsport = process.env.WSPORT || 8080;
+var httpport = process.env.PORT || 3000;
+var wshostname = process.env.WSHOST || "localhost";
+
 app.locals.ws = {
-    host: "localhost:8080",
+    host: wshostname + ":" + wsport,
 };
 
 app.get('/', function (req, res) {
@@ -28,7 +33,7 @@ app.get('/room/:id', function(req, res) {
     res.render('room', {"room": room});
 });
 
-const wss = new WebSocket.Server({ port: 8080 });
+const wss = new WebSocket.Server({ port: wsport });
 
 function handleCommand(client, cmd, args) {
     switch(cmd) {
@@ -63,8 +68,8 @@ wss.on('connection', function connection(ws) {
     });
 });
 
-console.log("Started websocket server on port 8080");
+console.log("Started websocket server on port " + wsport);
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+app.listen(httpport, function () {
+  console.log('Started http server on port ' + httpport);
 });
