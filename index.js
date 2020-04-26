@@ -48,11 +48,16 @@ function handleCommand(client, cmd, args) {
             }
         case "start":
             if(!ttt.start(args)) {
-                return {status: "Game already started"};
+                return {status: "Could not start game (already started?)"};
+            }
+            return;
+        case "stop":
+            if(!ttt.stop(args)) {
+                return {status: "Could not stop game"};
             }
             return;
     }
-    return {status: "Command not recognized"};
+    return {status: "Command not recognized: " + cmd};
 }
 
 wss.on('connection', function connection(ws) {

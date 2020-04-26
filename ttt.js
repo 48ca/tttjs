@@ -28,6 +28,7 @@ var utils = require('./utils');
         var player = {
             name: name,
             role: role,
+            host: Object.keys(room.players).length == 0,
         }
         room.players[name] = player;
         return player;
@@ -75,6 +76,13 @@ var utils = require('./utils');
         return sendableInfo(room);
     }
 
+    var unassignRoles = function(room) {
+        var players = utils.shuffle(Object.keys(room.players));
+        players.forEach(function(player, idx) {
+            room.players[player].role = "UNDETERMINED";
+        });
+    }
+
     var assignRoles = function(room) {
         var players = utils.shuffle(Object.keys(room.players));
         players.forEach(function(player, idx) {
@@ -88,9 +96,23 @@ var utils = require('./utils');
         });
     }
 
+    var stop = function(args) {
+        var room = rooms[args.room];
+        if (!room.players[args.name].host) {
+            return false;
+        }
+        room.phase = "PREGAME";
+        unassignRoles(room);
+        updateAllPlayers(room);
+        return true;
+    }
+
     var start = function(args) {
         var room = rooms[args.room];
         if (room.phase != "PREGAME") {
+            return false;
+        }
+        if (!room.players[args.name].host) {
             return false;
         }
         room.phase = "PLAYING";
@@ -105,6 +127,7 @@ var utils = require('./utils');
         room: function(id) { return rooms[id]; },
         info: roomInfo,
         start: start,
+        stop: stop,
         templateInfo: templateInfo,
     };
 }());
