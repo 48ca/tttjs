@@ -31,6 +31,9 @@ body {
     margin: 5px;
 }
 
+main > h1 {
+    margin-bottom: 30px;
+}
 .roles h1 {
     margin: 0;
     padding: 10px;
@@ -64,6 +67,9 @@ body {
 .undetermined {
     background-color: white;
     border-radius: 10px;
+    font-size: small;
+    text-shadow: none;
+    color: black;
 }
 .spectator {
     background-color: grey;
@@ -88,6 +94,13 @@ body {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;
+}
+#players td {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+#players_title {
+    padding-top: 10%;
 }
 li {
     text-align: left;

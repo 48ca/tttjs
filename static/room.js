@@ -41,13 +41,13 @@ var updateGame = function(game) {
     }
     var role = game.players[NAME].role;
     //document.body.querySelector("#players").innerHTML = JSON.stringify(players);
-    document.body.querySelector("#phase").innerHTML = phase;
+    document.body.querySelector("#players_title").innerHTML = "<b> Players: </b>";
     if (players[NAME].host) {
         showHostButtons();
     } else {
         hideHostButtons();
     }
-    document.body.querySelector("#role").innerHTML = "<div class=\""+role.toLowerCase()+"\"><h1>"+role+"</h1></div>";
+    document.body.querySelector("#role").innerHTML = "<h2> Your role: </h2><div class=\""+role.toLowerCase()+"\"><h1>"+(role == "Undetermined" ? "Waiting for host..." : role)+"</h1></div>";
 };
 
 var getPlayerName = function(e) {
