@@ -31,7 +31,12 @@ var updateGame = function(game) {
         document.body.querySelector("#players").innerHTML = players_html + str;
     }
     Object.keys(players).forEach(function(player, index) {
-        next_players += (index%2==0 ? "<tr><td>"+player+"</td>" : "<td>"+player+"</td></tr>")
+        var color = "black";
+        if (players[NAME].role == "Traitor" && players[player].role == "Traitor") 
+            color = "red";
+        if (players[player].role == "Detective")
+            color = "blue";
+        next_players += (index%2==0 ? "<tr><td style=\"color:"+color+"\">"+player+"</td>" : "<td style=\"color:"+color+"\">"+player+"</td></tr>")
         if (index%2 == 1) {
             appendToPlayers(next_players);
             next_players="";
