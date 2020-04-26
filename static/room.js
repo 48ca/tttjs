@@ -109,6 +109,7 @@ var connect = function() {
         var data = JSON.parse(event.data);
         if (data.status == "disconnected") {
             console.warn("disconnected: replaced");
+            document.location.pathname = "/";
             socket.close();
             return;
         }
